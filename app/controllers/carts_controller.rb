@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
-	
+	before_action :authenticate_user!
+
 	def add_item_to_cart
 		 @cart = current_cart
 		inventory_item = InventoryItem.find(params[:id])
@@ -31,14 +32,14 @@ class CartsController < ApplicationController
 		@cart = current_cart
 		Order.transaction do
 			line_items = @cart.line_items
-			@order = Order.create(user: User.first, status: 'order-placed') #Todo
+			@order = Order.create(user: current_user, status: 'order-placed')
 			line_items.each do |item|
 				params = item.attributes.slice('name','price','quantity')
 				params["order_id"] = @order.id
 				order_line_item = LineItem.create(params)
 			end
 		end
-		newcart = Cart.create(user: User.first) #Todo
+		newcart = Cart.create(user: current_user)
     	session[:cart_id] = newcart.id
 	end
 	
