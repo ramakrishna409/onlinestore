@@ -1,0 +1,20 @@
+<a href="/checkout">Checkout (<%= @cart.line_items.count %>)</a>
+
+<table class="table">
+	<thead>
+      <tr>
+        <th>Item name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+<% @inventory_items.each do |item| %>
+<tr>
+	<td><%= item.name %></td>
+  <td><%= item.quantity %></td>
+	<td><%= item.price %></td>
+	<td><a href="AddToCart/<%= item.id %>">Add to cart</a></td>
+</tr>
+<% end %>
+</table>

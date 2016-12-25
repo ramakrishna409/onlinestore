@@ -1,0 +1,18 @@
+<a href="/">Dashboard</a>
+<p>Order Items</p>
+<table class="table">
+	<thead>
+      <tr>
+        <th>Item name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+<% @order.line_items.each do |item| %>
+<tr>
+	<td><%= item.name %> </td>
+	<td><%= item.quantity %></td>
+	<td><%= item.price %></td>
+</tr>
+<% end %>
+</table>
