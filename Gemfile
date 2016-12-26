@@ -48,7 +48,3 @@ end
 
 #for aut
 gem 'devise'
-
-#for ui 
-gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
